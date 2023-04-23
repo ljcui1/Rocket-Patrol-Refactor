@@ -1,4 +1,9 @@
+/*
+Lia Cui
+Rocket Patrol Mod (base name)
+hours
 
+*/
 
 let config = {
     type: Phaser.AUTO,

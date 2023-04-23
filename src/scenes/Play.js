@@ -78,6 +78,47 @@ class Play extends Phaser.Scene {
             this.gameOver = true;
         }, null, this);
 
+        this.time.addEvent({
+            delay: 1000, // Update the text every second
+            callback: () => {
+              const remainingTime = Math.ceil(this.clock.getRemainingSeconds());
+              this.clockRight = this.add.text(game.config.width - 143, borderUISize + borderPadding * 2, "Time Left: \n" + remainingTime + " ", clockConfig);
+              this.add.text(game.config.width - 350, borderUISize + borderPadding * 2, "Time Elapsed: \n" + Math.ceil(this.clock.elapsed /1000) + " ", elapseConfig);
+            },
+            loop: true, // Keep the timer event looping indefinitely
+          });
+
+        // display clock
+        let clockConfig = {
+            fontFamily: 'Courier',
+            fontSize: '15px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+
+        let elapseConfig = {
+            fontFamily: 'Courier',
+            fontSize: '15px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 125
+        }
+
+        
+        
+
+    
 
     }
 
@@ -121,6 +162,26 @@ class Play extends Phaser.Scene {
     checkCollision (rocket,ship){
         // simple AABB checking
         if (rocket.x < ship.x + ship.width && rocket.x + rocket.width > ship.x && rocket.y < ship.y + ship.height && rocket.height + rocket.y > ship.y){
+            const addedTime = 1000; // Add 5 seconds to the clock
+            this.clock.elapsed -= addedTime;
+            game.settings.gameTimer += addedTime;// Add the time to the clock
+            let addTimeConfig = {
+                fontFamily: 'Courier',
+                fontSize: '20px',
+                color: '#000000',
+                align: 'right',
+                padding: {
+                    top: 5,
+                    bottom: 5,
+                },
+                fixedWidth: 100
+            }
+            const addTime = this.add.text(game.config.width - 250, borderUISize + borderPadding * 2, "+1 sec", addTimeConfig);
+            addTime.setVisible(true);
+            this.time.delayedCall(1250,
+                () => {
+                    addTime.setVisible(false);
+                });
             return true;
         } else {
             return false;

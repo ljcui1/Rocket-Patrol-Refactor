@@ -49,6 +49,7 @@ class Menu extends Phaser.Scene {
             }
             this.sound.play('sfx_select');
             this.scene.start('playScene');
+            
         }
         if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){
             // hard mode
@@ -58,6 +59,7 @@ class Menu extends Phaser.Scene {
             }
             this.sound.play('sfx_select');
             this.scene.start('playScene');
+            
         }
     }
 
