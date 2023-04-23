@@ -6,7 +6,7 @@ class Play extends Phaser.Scene {
     preload(){
         // load images/tile sprites
         this.load.image('rocket', './assets/rocket.png');
-        this.load.image('spaceship', './assets/spaceship.png');
+        this.load.spritesheet('spaceship', './assets/spaceshipsheet.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 1});
         this.load.image('starfield', './assets/starfield.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -32,8 +32,11 @@ class Play extends Phaser.Scene {
 
         // add spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize * 6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
+        this.ship01.anims.play('blush');
         this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3, borderUISize*5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
+        this.ship02.anims.play('blush');
         this.ship03 = new Spaceship(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
+        this.ship03.anims.play('blush');
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -205,6 +208,15 @@ class Play extends Phaser.Scene {
 
         this.sound.play('sfx_explosion');
 
+    }
+
+    shipAnim(ship){
+        this.anims.create({
+            key: 'blush',
+            frames: this.anims.generateFrameNumbers('spaceship', { start: 0, end: 1 }),
+            frameRate: 6,
+            repeat: -1
+          });
     }
 
 }
