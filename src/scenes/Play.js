@@ -5,7 +5,7 @@ class Play extends Phaser.Scene {
 
     preload(){
         // load images/tile sprites
-        this.load.image('rocket', './assets/rocket.png');
+        this.load.image('rocket', './assets/lips.png');
         this.load.spritesheet('spaceship', './assets/spaceshipsheet.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 1});
         this.load.image('flowerfield', './assets/flowerfield.png');
         // load spritesheet
@@ -45,6 +45,7 @@ class Play extends Phaser.Scene {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        //mouseDown = this.input.mouse.add()
 
 
         // animation config
@@ -220,5 +221,7 @@ class Play extends Phaser.Scene {
             repeat: -1
           });
     }
+
+
 
 }
