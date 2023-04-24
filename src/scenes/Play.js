@@ -7,7 +7,7 @@ class Play extends Phaser.Scene {
         // load images/tile sprites
         this.load.image('rocket', './assets/rocket.png');
         this.load.spritesheet('spaceship', './assets/spaceshipsheet.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 1});
-        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('flowerfield', './assets/flowerfield.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
     
@@ -16,7 +16,7 @@ class Play extends Phaser.Scene {
 
     create(){
         // place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'flowerfield').setOrigin(0, 0);
 
         // add spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize * 6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
@@ -28,7 +28,7 @@ class Play extends Phaser.Scene {
 
 
         // green UI background
-        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
+        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0xeb958f).setOrigin(0, 0);
         // white borders
         this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
@@ -61,8 +61,8 @@ class Play extends Phaser.Scene {
         let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#ffd2cf',
+            color: '#a83232',
             align: 'right',
             padding: {
                 top: 5,
@@ -97,8 +97,8 @@ class Play extends Phaser.Scene {
         let clockConfig = {
             fontFamily: 'Courier',
             fontSize: '15px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#ffd2cf',
+            color: '#a83232',
             align: 'right',
             padding: {
                 top: 5,
@@ -110,8 +110,8 @@ class Play extends Phaser.Scene {
         let elapseConfig = {
             fontFamily: 'Courier',
             fontSize: '15px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#ffd2cf',
+            color: '#a83232',
             align: 'right',
             padding: {
                 top: 5,
