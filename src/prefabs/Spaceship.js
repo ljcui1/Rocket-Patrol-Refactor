@@ -5,8 +5,8 @@ class Spaceship extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);  // add to existing scene
         this.points = pointValue;  // store pointValue       // pixels per frame
         // random x position
-        this.reset();
         this.direction = {};
+        this.reset();
         
 
         
@@ -44,6 +44,7 @@ class Spaceship extends Phaser.GameObjects.Sprite {
 
     reset(){
         this.direction = Phaser.Math.Between(0, 1); // 0 = left to right, 1 = right to left
+        console.log(this.direction);
         if (this.direction === 0) {
             this.setPosition(0, this.y)
             this.moveSpeed = game.settings.spaceshipSpeed /*+ Phaser.Math.Between (3, 6)*/;

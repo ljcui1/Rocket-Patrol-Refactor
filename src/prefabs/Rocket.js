@@ -10,6 +10,8 @@ class Rocket extends Phaser.GameObjects.Sprite {
 
         this.sfxRocket = scene.sound.add('sfx_rocket'); // add rocket sfx
 
+        // enable input events
+        this.setInteractive();
 
     }
 
@@ -26,11 +28,21 @@ class Rocket extends Phaser.GameObjects.Sprite {
 
         }
 
+        
+
+        // listen for pointer down event
+        this.on('pointerdown', () => {
+            if (!this.isFiring) {
+                this.isFiring = true;
+                this.sfxRocket.play(); // play sfx
+            }
+        });
+
         // fire button
-        if(Phaser.Input.Keyboard.JustDown(keyF) && !this.isFiring){
+        /*if(Phaser.Input.Keyboard.JustDown(keyF) && !this.isFiring){
             this.isFiring = true;
             this.sfxRocket.play(); // play sfx
-        }
+        }*/
         /*
         // if fired, move up
         if(this.isFiring && this.y >= borderUISize * 3 + borderPadding) {
@@ -42,27 +54,27 @@ class Rocket extends Phaser.GameObjects.Sprite {
 
         if(this.isFiring){
             //this.setPosition(game.input.mousePointer.x, game.input.mousePointer.y);
-        // Get mouse position
-        let mouseX = this.scene.input.mousePointer.worldX;
-        let mouseY = this.scene.input.mousePointer.worldY;
+            // Get mouse position
+            let mouseX = this.scene.input.mousePointer.worldX;
+            let mouseY = this.scene.input.mousePointer.worldY;
 
-        // Calculate angle between rocket and mouse pointer
-        let angle = Phaser.Math.Angle.Between(this.x, this.y, mouseX, mouseY);
+            // Calculate angle between rocket and mouse pointer
+            let angle = Phaser.Math.Angle.Between(this.x, this.y, mouseX, mouseY);
 
-        // Set rocket rotation angle
-        this.rotation = angle;
+            // Set rocket rotation angle
+            this.rotation = angle;
 
-        // Move rocket towards mouse pointer
-        // Calculate velocity towards mouse position
-        let dx = mouseX - this.x;
-        let dy = mouseY - this.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        let velX = (dx / dist) * this.moveSpeed;
-        let velY = (dy / dist) * this.moveSpeed;
+            // Move rocket towards mouse pointer
+            // Calculate velocity towards mouse position
+            let dx = mouseX - this.x;
+            let dy = mouseY - this.y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+            let velX = (dx / dist) * this.moveSpeed;
+            let velY = (dy / dist) * this.moveSpeed;
 
-        // Move rocket towards mouse pointer
-        this.x += velX;
-        this.y += velY;
+            // Move rocket towards mouse pointer
+            this.x += velX;
+            this.y += velY;
     }
 
         // reset on miss
