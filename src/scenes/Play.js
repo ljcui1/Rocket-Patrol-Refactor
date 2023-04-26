@@ -20,11 +20,11 @@ class Play extends Phaser.Scene {
 
         // add spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize * 6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
-        this.shipAnim(this.ship01);
+        this.ship01.anims.play('blush');
         this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3, borderUISize*5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
-        this.shipAnim(this.ship02);
+        this.ship02.anims.play('blush');
         this.ship03 = new Spaceship(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
-        this.shipAnim(this.ship03);
+        this.ship03.anims.play('blush');
 
 
         // green UI background
@@ -38,6 +38,14 @@ class Play extends Phaser.Scene {
         // add rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
 
+         // Enable input events for the whole scene
+         this.input.on('pointerdown', () => {
+            this.p1Rocket.fire();
+            // Add code here to run when the scene is clicked
+        });
+
+    
+
         
 
         // define keys
@@ -47,6 +55,13 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         //mouseDown = this.input.mouse.add()
 
+
+        this.anims.create({
+            key: 'blush',
+            frames: this.anims.generateFrameNumbers('spaceship', { start: 0, end: 1 }),
+            frameRate: 5,
+            repeat: -1
+        });
 
         // animation config
         this.anims.create({
@@ -129,6 +144,7 @@ class Play extends Phaser.Scene {
     }
 
     update(){
+        
         // check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)){
             this.scene.restart();
@@ -136,6 +152,9 @@ class Play extends Phaser.Scene {
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)){
             this.scene.start("menuScene");
         }
+
+        
+    
 
         this.starfield.tilePositionX -= 4;
 
@@ -164,7 +183,11 @@ class Play extends Phaser.Scene {
         
 
     }
-
+/*
+    doSumthin () {
+        console.log("hi");
+    }
+*/
     checkCollision (rocket,ship){
         // simple AABB checking
         if (rocket.x < ship.x + ship.width && rocket.x + rocket.width > ship.x && rocket.y < ship.y + ship.height && rocket.height + rocket.y > ship.y){
@@ -213,14 +236,7 @@ class Play extends Phaser.Scene {
 
     }
 
-    shipAnim(ship){
-        this.anims.create({
-            key: 'blush',
-            frames: this.anims.generateFrameNumbers('spaceship', { start: 0, end: 1 }),
-            frameRate: 6,
-            repeat: -1
-          });
-    }
+    
 
 
 
