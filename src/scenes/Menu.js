@@ -23,7 +23,21 @@ class Menu extends Phaser.Scene {
             fontSize: '27px',
             backgroundColor: '#eb958f',
             color: '#FFFFFF',
-            align: 'right',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
+
+        // menu text config
+        let textConfig = {
+            fontFamily: 'Courier',
+            fontSize: '20px',
+            backgroundColor: '#eb958f',
+            color: '#FFFFFF',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
@@ -32,11 +46,11 @@ class Menu extends Phaser.Scene {
         }
 
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET BOYFRIEND', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Use the ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#ffd2cf';
-        menuConfig.color = '#a83232';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET BOYFRIEND', menuConfig).setOrigin(0.5, 1);
+        this.add.text(game.config.width/2, game.config.height/2, 'Use (A) to move left and \nuse (D) to move right before firing \nLeft Mouse Click to fire\nUse Mouse Cursor to control Lips', textConfig).setOrigin(0.5);
+        textConfig.backgroundColor = '#ffd2cf';
+        textConfig.color = '#a83232';
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', textConfig).setOrigin(0.5, 0);
 
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);

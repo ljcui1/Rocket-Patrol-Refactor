@@ -6,25 +6,49 @@ class Play extends Phaser.Scene {
     preload(){
         // load images/tile sprites
         this.load.image('rocket', './assets/lips.png');
-        this.load.spritesheet('spaceship', './assets/spaceshipsheet.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 1});
+        /*this.load.spritesheet('spaceship', './assets/spaceshipsheet.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 1});*/
         this.load.image('flowerfield', './assets/flowerfield.png');
+        this.load.image('stars', './assets/stars.png');
+        this.load.image('planets', './assets/planets.png');
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        /*this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});*/
+        this.load.atlas('ship', './assets/spritesheet.png', './assets/sprites.json');
     
     }
 
 
     create(){
         // place tile sprite
+        this.planets = this.add.tileSprite(0, 0, 640, 480, 'planets').setOrigin(0, 0);
+        
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'flowerfield').setOrigin(0, 0);
 
+        this.stars = this.add.tileSprite(0, 0, 640, 480, 'stars').setOrigin(0, 0);
+
+        
+
         // add spaceships (x3)
-        this.ship01 = new Spaceship(this, game.config.width + borderUISize * 6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
-        this.ship01.anims.play('blush');
-        this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3, borderUISize*5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
-        this.ship02.anims.play('blush');
-        this.ship03 = new Spaceship(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
-        this.ship03.anims.play('blush');
+        this.ship01 = new Spaceship(this, game.config.width + borderUISize * 6, borderUISize*4, 'ship', 'ship01', 30).setOrigin(0, 0);
+        this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3, borderUISize*5 + borderPadding * 2, 'ship', 'ship01', 20).setOrigin(0, 0);
+        this.ship03 = new Spaceship(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'ship', 'ship01', 10).setOrigin(0, 0);
+
+        //add animation to sprite
+        this.anims.create({
+            key: 'blush',
+            frames: this.anims.generateFrameNames('ship', {
+                prefix: 'ship',
+                start: 1,
+                end: 2,
+                zeroPad: 2,
+                /*suffix: '.png'*/
+            }),
+            frameRate: 5.5,
+            repeat: -1
+        });
+
+        this.ship01.play('blush');
+        this.ship02.play('blush');
+        this.ship03.play('blush');
 
 
         // green UI background
@@ -51,24 +75,30 @@ class Play extends Phaser.Scene {
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         //mouseDown = this.input.mouse.add()
 
 
-        this.anims.create({
-            key: 'blush',
-            frames: this.anims.generateFrameNumbers('spaceship', { start: 0, end: 1 }),
-            frameRate: 5,
-            repeat: -1
-        });
+        
 
         // animation config
+
         this.anims.create({
             key: 'explode',
-            frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
+            frames: this.anims.generateFrameNames('ship', {
+                prefix: 'explosion',
+                start: 1,
+                end: 11,
+                zeroPad: 2,
+                /*suffix: '.png'*/
+            }),
             frameRate: 30
         });
+
+    
 
         // initialize score
         this.p1Score = 0;
@@ -155,8 +185,9 @@ class Play extends Phaser.Scene {
 
         
     
-
-        this.starfield.tilePositionX -= 4;
+        this.planets.tilePositionX -= 0.5;
+        this.stars.tilePositionX += 4;
+        this.starfield.tilePositionX -= 2.75;
 
         if(!this.gameOver){
             this.p1Rocket.update();         // update rocket sprite

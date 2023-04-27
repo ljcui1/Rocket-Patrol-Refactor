@@ -28,7 +28,7 @@ class Spaceship extends Phaser.GameObjects.Sprite {
             console.log('right to left');
             this.reset();
         }
-
+/*
         // Increase speed after 30 seconds
         if (this.moveSpeed > 0){
             this.scene.time.delayedCall(30000, () => {
@@ -39,7 +39,7 @@ class Spaceship extends Phaser.GameObjects.Sprite {
                 this.x += 2;
             });
         }
-        
+        */
     }
 
     reset(){
