@@ -18,14 +18,12 @@ class Blushing extends Phaser.Scene {
         // place tile sprite
         this.anims.create({
             key: 'talk',
-            frames: this.anims.generateFrameNames('dialog', {
-                prefix: 'dialog',
-                start: 1,
-                end: 2,
-                zeroPad: 2,
+            frames: this.anims.generateFrameNumbers('dialog', {
+                start: 0,
+                end: 1,
                 //suffix: '.png'
             }),
-            frameRate: 6,
+            frameRate: 5,
             repeat: -1
         });
 
@@ -40,42 +38,43 @@ class Blushing extends Phaser.Scene {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 125
+            fixedWidth: 300
         }
 
+        
         let choice = Phaser.Math.Between(0, 10);
         if (choice < 1 || choice == 0){
-            this.add.text(200, 300, "EEEEEE!! SENPAI KISSED ME!!!!!! >w< ", dialogConfig);
+            this.add.text(150, 275, "EEEEEE!! SENPAI KISSED ME!!!!!! >w< ", dialogConfig);
 
         }else if (choice < 2 || choice == 1){
-            this.add.text(200, 300, "WAAHHH??!! I GOT NOTICED?? ", dialogConfig);
+            this.add.text(150, 275, "WAAHHH??!! I GOT NOTICED?? ", dialogConfig);
 
         }else if (choice < 3 || choice == 2){
-            this.add.text(200, 300, "Tch!!! It's not like I liked that!!!! （＞д＜）", dialogConfig);
+            this.add.text(150, 275, "Tch!!! It's not like I liked that!!!! （＞д＜）", dialogConfig);
 
         }else if (choice < 4 || choice == 3){
-            this.add.text(200, 300, "UUUWWAAAA!!! YOU.. YOU LIKE ME??", dialogConfig);
+            this.add.text(150, 275, "UUUWWAAAA!!! YOU.. YOU LIKE ME??", dialogConfig);
 
         }else if (choice < 5 || choice == 4){
-            this.add.text(200, 300, "SENPAI THINKS I'M KAWAII!!!!!!!!!", dialogConfig);
+            this.add.text(150, 275, "SENPAI THINKS I'M KAWAII!!!!!!!!!", dialogConfig);
 
         }else if (choice < 6 || choice == 5){
-            this.add.text(200, 300, "Why did you kiss me??!!! (´ω｀*) ", dialogConfig);
+            this.add.text(150, 275, "Why did you kiss me??!!! (´ω｀*) ", dialogConfig);
 
         }else if (choice < 7 || choice == 6){
-            this.add.text(200, 300, "SENPAI IS OVERWHELMING ME!!!!! (*´∀`*) ", dialogConfig);
+            this.add.text(150, 275, "SENPAI IS OVERWHELMING ME!!!!! (*´∀`*) ", dialogConfig);
 
         }else if (choice < 8 || choice == 7){
-            this.add.text(200, 300, "I didn't want a kiss from you!! ( ˶•̀ _•́ ˶)", dialogConfig);
+            this.add.text(150, 275, "I didn't want a kiss from you!! ( ˶•̀ _•́ ˶)", dialogConfig);
 
         }else if (choice < 9 || choice == 8){
-            this.add.text(200, 300, "B-Baka...!", dialogConfig);
+            this.add.text(150, 275, "B-Baka...!", dialogConfig);
 
         }else if (choice < 10 || choice == 9){
-            this.add.text(200, 300, "SENPAI!!!! UWWWAAAAA!!!!!!!", dialogConfig);
+            this.add.text(150, 275, "SENPAI!!!! UWWWAAAAA!!!!!!!", dialogConfig);
 
         }else if (choice == 10){
-            this.add.text(200, 300, "( ͡° ͜ʖ ͡°)", dialogConfig);
+            this.add.text(150, 275, "( ͡° ͜ʖ ͡°)", dialogConfig);
 
         }
 
