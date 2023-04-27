@@ -242,6 +242,7 @@ class Play extends Phaser.Scene {
                 () => {
                     addTime.setVisible(false);
                 });
+            this.blushingShips();    
             return true;
         } else {
             return false;
@@ -265,6 +266,11 @@ class Play extends Phaser.Scene {
 
         this.sound.play('sfx_explosion');
 
+    }
+
+    blushingShips(){
+        this.scene.pause();
+        this.scene.launch('blushScene');
     }
 
     
