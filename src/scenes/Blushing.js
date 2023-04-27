@@ -44,13 +44,13 @@ class Blushing extends Phaser.Scene {
         
         let choice = Phaser.Math.Between(0, 10);
         if (choice < 1 || choice == 0){
-            this.add.text(150, 275, "EEEEEE!! SENPAI KISSED ME!!!!!! >w< ", dialogConfig);
+            this.add.text(150, 275, "EEEEEE!! SENPAI KISSED ME!!!!!! \n>w< ", dialogConfig);
 
         }else if (choice < 2 || choice == 1){
             this.add.text(150, 275, "WAAHHH??!! I GOT NOTICED?? ", dialogConfig);
 
         }else if (choice < 3 || choice == 2){
-            this.add.text(150, 275, "Tch!!! It's not like I liked that!!!! （＞д＜）", dialogConfig);
+            this.add.text(150, 275, "Tch!!! It's not like I liked \nthat!!!! （＞д＜）", dialogConfig);
 
         }else if (choice < 4 || choice == 3){
             this.add.text(150, 275, "UUUWWAAAA!!! YOU.. YOU LIKE ME??", dialogConfig);
@@ -59,13 +59,13 @@ class Blushing extends Phaser.Scene {
             this.add.text(150, 275, "SENPAI THINKS I'M KAWAII!!!!!!!!!", dialogConfig);
 
         }else if (choice < 6 || choice == 5){
-            this.add.text(150, 275, "Why did you kiss me??!!! (´ω｀*) ", dialogConfig);
+            this.add.text(150, 275, "Why did you kiss me??!!! \n(´ω｀*) ", dialogConfig);
 
         }else if (choice < 7 || choice == 6){
-            this.add.text(150, 275, "SENPAI IS OVERWHELMING ME!!!!! (*´∀`*) ", dialogConfig);
+            this.add.text(150, 275, "SENPAI IS OVERWHELMING ME!!!!! \n(*´∀`*) ", dialogConfig);
 
         }else if (choice < 8 || choice == 7){
-            this.add.text(150, 275, "I didn't want a kiss from you!! ( ˶•̀ _•́ ˶)", dialogConfig);
+            this.add.text(150, 275, "I didn't want a kiss from you!! \n( ˶•̀ _•́ ˶)", dialogConfig);
 
         }else if (choice < 9 || choice == 8){
             this.add.text(150, 275, "B-Baka...!", dialogConfig);
