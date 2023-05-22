@@ -33,7 +33,7 @@ class Blushing extends Phaser.Scene {
             fontFamily: 'Courier',
             fontSize: '15px',
             color: '#5c0523',
-            align: 'right',
+            align: 'left',
             padding: {
                 top: 5,
                 bottom: 5,
