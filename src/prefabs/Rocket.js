@@ -27,6 +27,11 @@ class Rocket extends Phaser.GameObjects.Sprite {
     update() {
         // left/right movement
         if(!this.isFiring){
+            let mouseX = this.scene.input.mousePointer.worldX;
+            let dx = mouseX - this.x;
+            let velX = (dx / 3) * this.moveSpeed;
+            this.x += velX;
+
             if(keyA.isDown && this.x >= borderUISize + this.width){
                 this.x -= this.moveSpeed;
 
@@ -34,6 +39,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
                 this.x += this.moveSpeed;
 
             }
+
             /*
             this.input.on('pointerdown', () => {
                 this.fire();
